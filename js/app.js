@@ -102,9 +102,17 @@ function init() {
 	configureMeasureLine();
 }
 
+function resetPickerClass() {
+	let activePicker = document.querySelector('.slider-picker__active');
+	if(activePicker) {
+		activePicker.classList.remove('slider-picker__active');
+	}
+}
+
 function resetPickersZIndex() {
 	for(let i = 0; i < sliderPickers.length; i++) {
 		sliderPickers[i].style.zIndex = 1;
+		sliderPickers[i].classList.remove('slider-picker__active');
 	}
 }
 
@@ -117,8 +125,10 @@ function setSliderPosOnClick(e) {
 		setPosition(target, e.clientX);
 		lastClicked = target;
 		resetPickersZIndex();
-		lastClicked.style.zIndex = 2;
 	}
+
+	lastClicked.style.zIndex = 2;
+	lastClicked.classList.add('slider-picker__active');
 
 	activeSliderPicker = lastClicked;
 }
@@ -141,8 +151,6 @@ function setRange() {
 
 	let minPickerValue = parseInt(minInput.value);
 	let maxPickerValue = parseInt(maxInput.value);
-
-	console.log(minPickerValue);
 
 	let point = sliderWidth / maxRange;
 	let sliderX = slider.getBoundingClientRect().left;
@@ -167,5 +175,6 @@ slider.addEventListener('mousedown', setSliderPosOnClick);
 document.addEventListener('mousemove', setSliderPickerPosition);
 inputButton.addEventListener('click', setRange);
 document.addEventListener('mouseup', function() {
+	resetPickerClass();
 	activeSliderPicker = null;
 });

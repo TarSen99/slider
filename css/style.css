@@ -38,5 +38,7 @@ body {
 .slider-form input{
 	margin-right: 20px;
 }
-/*2A7EC3
-*/
+
+.slider-picker__active {
+	background-color: #9999ff;
+}
