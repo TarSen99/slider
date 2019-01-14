@@ -119,7 +119,7 @@ function resetPickersZIndex() {
 function setSliderPosOnClick(e) {
 	let target = e.target;	
 
-	if(target.matches('.slider')) {
+	if(target.matches('.slider') || target.matches('.line')) {
 		setPosition(lastClicked, e.clientX);
 	} else if(target.matches('.slider-picker')) {
 		setPosition(target, e.clientX);
@@ -178,3 +178,4 @@ document.addEventListener('mouseup', function() {
 	resetPickerClass();
 	activeSliderPicker = null;
 });
+
